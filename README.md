@@ -1,4 +1,4 @@
-# gmod_atmosphere_api
+# gmlm_atmosphere_api
 
 ## Example
 ```lua
