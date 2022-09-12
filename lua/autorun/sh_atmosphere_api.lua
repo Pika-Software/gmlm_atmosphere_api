@@ -1,6 +1,7 @@
 module( "atmosphere", package.seeall )
 
 if (CLIENT) then
+
     function Run( name, ... )
         if isstring( name ) then
             RunConsoleCommand( "menu_api", name, ... )
@@ -20,6 +21,7 @@ if (CLIENT) then
             end
         end
     end)
+
 end
 
 if (SERVER) then
