@@ -9,6 +9,6 @@
     end
 
     if (SERVER) then
-        atmosphere.Run( "clientAction", "prikolmen" )
+        atmosphere.Broadcast( "clientAction", "prikolmen" )
     end
 ```
