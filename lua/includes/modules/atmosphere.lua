@@ -72,6 +72,10 @@ if (CLIENT) then
 
     end
 
+    hook.Add("InitPostEntity", "atmosphere.clientAPI.ready", function()
+        RunFunc( "clientAPI.ready" )
+    end)
+
 end
 
 -- Server -> Client API
