@@ -2,13 +2,13 @@
 
 ## Example
 ```lua
-    require( "atmosphere" )
+    require( 'atmosphere' )
 
     if (CLIENT) then
-        atmosphere.Run( "clientAction", LocalPlayer():Nick() )
+        atmosphere.Menu( 'action', LocalPlayer():Nick() )
     end
 
     if (SERVER) then
-        atmosphere.Broadcast( "clientAction", "prikolmen" )
+        atmosphere.Broadcast( 'action', 'prikolmen' )
     end
 ```
