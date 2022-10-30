@@ -1,4 +1,4 @@
-# gmlm_atmosphere_api
+# Atmosphere Client API ( Lua Module )
 
 ## Example
 ```lua
