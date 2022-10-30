@@ -1,4 +1,4 @@
-module( "atmosphere", package.seeall )
+module( 'atmosphere', package.seeall )
 
 if (CLIENT) then
 
@@ -7,15 +7,15 @@ if (CLIENT) then
 
         local apiCommands = {}
         function SetFunc( name, func )
-            assert( isstring( name ), "Argument #1 must be string!" )
-            assert( isfunction( func ), "Argument #2 must be function!" )
+            assert( isstring( name ), 'Argument #1 must be string!' )
+            assert( isfunction( func ), 'Argument #2 must be function!' )
             apiCommands[ name ] = func
         end
 
         do
             local isfunction = isfunction
             function RunFunc( name, ... )
-                assert( isstring( name ), "Argument #1 must be string!" )
+                assert( isstring( name ), 'Argument #1 must be string!' )
                 local func = apiCommands[ name ]
                 if isfunction( func ) then
                     func( ... )
@@ -23,9 +23,9 @@ if (CLIENT) then
             end
         end
 
-        concommand.Add("atmosphere_api", function( ply, cmd, args )
+        concommand.Add('atmosphere_api', function( ply, cmd, args )
             RunFunc( unpack( args ) )
-        end, nil, "Menu -> Client API", FCVAR_DONTRECORD )
+        end, nil, 'Menu -> Client API', FCVAR_DONTRECORD )
 
     end
 
@@ -40,7 +40,7 @@ if (CLIENT) then
 
             function Menu( name, ... )
                 if isstring( name ) then
-                    RunConsoleCommand( "menu_api", name, ... )
+                    RunConsoleCommand( 'menu_api', name, ... )
                 end
             end
         end
@@ -54,9 +54,9 @@ if (CLIENT) then
             local istable = istable
             local unpack = unpack
 
-            net_Receive("atmosphere", function()
+            net_Receive('atmosphere', function()
                 local name = net_ReadString()
-                if isstring( name ) and (name ~= "") then
+                if isstring( name ) and (name ~= '') then
                     local args = net_ReadTable()
                     if istable( args ) then
                         if (#args > 0) then
@@ -72,16 +72,12 @@ if (CLIENT) then
 
     end
 
-    hook.Add("InitPostEntity", "atmosphere.clientAPI.ready", function()
-        RunFunc( "clientAPI.ready" )
-    end)
-
 end
 
 -- Server -> Client API
 if (SERVER) then
 
-    util.AddNetworkString( "atmosphere" )
+    util.AddNetworkString( 'atmosphere' )
 
     local net_WriteString = net.WriteString
     local net_WriteTable = net.WriteTable
@@ -90,14 +86,14 @@ if (SERVER) then
     local net_Send = net.Send
 
     function Send( ply, name, ... )
-        net_Start( "atmosphere" )
+        net_Start( 'atmosphere' )
             net_WriteString( name )
             net_WriteTable( {...} )
         net_Send( ply )
     end
 
     function Broadcast( name, ... )
-        net_Start( "atmosphere" )
+        net_Start( 'atmosphere' )
             net_WriteString( name )
             net_WriteTable( {...} )
         net_Broadcast()
